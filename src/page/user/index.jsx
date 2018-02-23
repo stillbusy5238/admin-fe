@@ -9,13 +9,14 @@ import User from 'service/user-service.jsx';
 const _mm = new MUtil();
 const _user = new User();
 
+import TableList from 'util/table-list/index.jsx';
+
 class UserList extends React.Component{
   constructor(props){
     super(props);
     this.state ={
       list: [],
-      pageNum : 1,
-      firstLoading : true
+      pageNum : 1
     }
 
   }
@@ -25,11 +26,7 @@ class UserList extends React.Component{
   }
   loadUserList(){
     _user.getUserList(this.state.pageNum).then(res => {
-      this.setState(res, ()=>{
-        this.setState({
-          firstLoading : false
-        });
-      });
+      this.setState(res);
     }, errMsg => {
       this.setState({
         list : []
@@ -60,41 +57,15 @@ class UserList extends React.Component{
         );
 
       });
-      let listError = (
-        <tr>
-          <td colSpan="5" className="text-center">{this.state.firstLoading ? '正在加载' : '没有找到相应的结果'}</td>
-        </tr>
-      );
-      let tableBody = this.state.list.length >0 ? listBody : listError;
+
     return(
       <div id="page-wrapper">
         <PageTitle title="用户列表"/>
-        <div className="row">
-          <div className="col-md-12">
-            <table className="table table-striped table-bordered">
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>username</th>
-                  <th>email</th>
-                  <th>phone</th>
-                  <th>time</th>
 
-                </tr>
-              </thead>
-              <tbody>
-                {
-                  tableBody
+        <TableList tableHeads={['ID','username','email','phone','createTime']}>
+          {listBody}
+        </TableList>
 
-                }
-
-              </tbody>
-
-            </table>
-
-
-          </div>
-        </div>
         <Pagination current={this.state.pageNum} total={this.state.total} onChange={(pageNum)=> this.onPageNumChange(pageNum)}/>
       </div>
 

@@ -12,6 +12,9 @@ import UserList from 'page/user/index.jsx';
 import Layout from 'component/layout/index.jsx';
 import Error from 'page/error/index.jsx';
 
+//分路由
+import ProductRouter from 'page/product/router.jsx';
+
 class App extends React.Component{
 
 
@@ -20,7 +23,7 @@ class App extends React.Component{
       <Layout>
        <Switch>
          <Route  exact path="/" component={Home}></Route>
-         <Route   path="/product" component={Home}></Route>
+         <Route   path="/product" component={ProductRouter}></Route>
          <Route  path="/product-category" component={Home}></Route>
          <Route   path="/user/index" component={UserList}></Route>
          <Redirect   exact from="/user" to="/user/index"></Redirect>
