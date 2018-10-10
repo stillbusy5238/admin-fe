@@ -11,7 +11,7 @@ class Pagination extends React.Component{
     return(
       <div className="row">
         <div className="col-md-12">
-          {/* 结构函数 */}
+          {/* 结构函数 别人怎么传怎么显示*/}
           <RcPagination {...this.props}
            hideOnSinglePage
            showQuickJumper />

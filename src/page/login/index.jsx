@@ -7,58 +7,50 @@ const _mm = new MUtil();
 const _user = new User();
 
 class Login extends React.Component{
+
   constructor(props){
     super(props);
     this.state = {
       username: '',
-      password : '',
-      redirect: _mm.getUrlParam('redirect') || '/'
+      password: '',
+      redirect : _mm.getUrlParam('redirect') || '/'
     }
   }
   componentWillMount(){
-    document.title = '登陆 - MMALL ADMIN';
+    document.title = 'login - MMALL ADMIN';
   }
-  //当用户名发生改变
   onInputChange(e){
     let inputName = e.target.name;
     let inputValue = e.target.value;
 
-
-    this.setState({
-      [inputName]: inputValue
-    });
-
+    this.setState(
+      {[inputName]:inputValue}
+    );
   }
   onInputKeyup(e){
     if(e.keyCode === 13){
-      this.onSubmit();
-
+      this.onSubmit(e);
     }
   }
-  //提交表单
-  onSubmit(){
+  //登陆
+  onSubmit(e){
     let loginInfo = {
-      username:  this.state.username,
+      username : this.state.username,
       password: this.state.password
     },
-        checkResult = _user.checkLoginInfo(loginInfo);
-        //验证通过
+    checkResult = _user.checkLoginInfo(loginInfo);
     if(checkResult.status){
       _user.login(loginInfo).then((res)=>{
         _mm.setStorage('userInfo', res);
         this.props.history.push(this.state.redirect);
-
       },(errMsg)=>{
-        _mm.errorTips(errMsg)
+        _mm.errorTips(errMsg);
 
-      });
+     });
 
-    }
-    else{
-      _mm.errorTips(checkResult.msg);
-    }
-
-
+   }else{
+     _mm.errorTips(checkResult.msg);
+   }
 
 
 

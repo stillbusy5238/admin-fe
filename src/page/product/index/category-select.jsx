@@ -91,7 +91,7 @@ class CategorySelect extends React.Component{
     });
 
   }
-  //选中二级品类
+
   onSecondCategoryChange(e){
     if(this.props.readOnly){
       return;
@@ -111,7 +111,7 @@ class CategorySelect extends React.Component{
 
   //传给父组件选中结果
   onPropsCategoryChange(){
-    //判断props里面的回掉函数
+    //判断props里面的回掉函数存在
     let categoryChangable = typeof this.props.onCategoryChange === 'function';
     if(this.state.secondCategoryId){
       categoryChangable && this.props.onCategoryChange(this.state.secondCategoryId,this.state.firstCategoryId)

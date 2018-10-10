@@ -101,7 +101,7 @@ class CategoryList extends React.Component{
 
             <Link to="/product-category/add" className="btn btn-primary">
               <i className="fa fa-plus"></i>
-              <span>添加品类</span>
+              <span>add</span>
             </Link>
           </div>
         </PageTitle>
@@ -112,7 +112,7 @@ class CategoryList extends React.Component{
            </div>
          </div>
 
-        <TableList tableHeads={['ID','品类名称','操作']}>
+        <TableList tableHeads={['ID','name','opear']}>
           {listBody}
         </TableList>
 

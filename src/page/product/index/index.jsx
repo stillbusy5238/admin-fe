@@ -31,7 +31,7 @@ class ProductList extends React.Component{
     let listParam = {};
     listParam.listType = this.state.listType;
     listParam.pageNum = this.state.pageNum;
-    //如果是搜索
+    //如果是搜索,需要传入搜索类型和搜索关键字
     if(this.state.listType === 'search'){
       listParam.searchType = this.state.searchType;
       listParam.keyword = this.state.searchKeyword;
@@ -47,18 +47,30 @@ class ProductList extends React.Component{
     });
   }
   //搜索
+  // onSearch(searchType, searchKeyword){
+  //
+  //   let listType = searchKeyword ==='' ? 'list' : 'search';
+  //   this.setState({
+  //     listType : listType,
+  //     pageNum : 1,
+  //     searchType : searchType,
+  //     searchKeyword: searchKeyword
+  //
+  //   }, ()=>{
+  //     this.loadProductList();
+  //   });
+  // }
   onSearch(searchType, searchKeyword){
-
-    let listType = searchKeyword ==='' ? 'list' : 'search';
+    let listType = searchKeyword === '' ? 'list' : 'search';
     this.setState({
       listType : listType,
       pageNum : 1,
       searchType : searchType,
-      searchKeyword: searchKeyword
-
-    }, ()=>{
+      searchKeyword : searchKeyword
+    },()=>{
       this.loadProductList();
     });
+
   }
   //页数发生变化的时候
   onPageNumChange(pageNum){
@@ -68,32 +80,32 @@ class ProductList extends React.Component{
       this.loadProductList();
     });
   }
-  //改变商品状态
-  onSetProductStatus(e,productId,currentStatus){
-    let newStatus = currentStatus ==1 ? 2 : 1,
-        confirmTips = currentStatus ==1 ? '下架？' : '上架？'
 
+  onSetProductStatus(e,productId,currentStatus){
+    let newStatus = currentStatus == 1 ? 2 : 1;
+    let confirmTips = currentStatus == 1 ? 'outstack ?': 'onsale ?';
     if(window.confirm(confirmTips)){
+      // console.log(productId);
       _product.setProductStatus({
         productId : productId,
         status : newStatus
-      }).then(res => {
+      }).then(res =>{
         _mm.successTip(res);
         this.loadProductList();
-      },errMsg=>{
+      },errMsg =>{
         _mm.errorTips(errMsg);
-      })
+      });
 
     }
   }
 
   render(){
     let tableHeads = [
-      {name: '商品ID', width: '10%'},
-      {name: '商品信息', width: '50%'},
-      {name: '价格', width: '10%'},
-      {name: '状态', width: '15%'},
-      {name: '操作', width: '15%'},
+      {name: 'productID', width: '10%'},
+      {name: 'productInfo', width: '50%'},
+      {name: 'price', width: '10%'},
+      {name: 'status', width: '15%'},
+      {name: 'opear', width: '15%'},
 
     ];
 
@@ -127,11 +139,11 @@ class ProductList extends React.Component{
                       <p>{
                         product.status == 1 ? 'onsale' : 'outstack'
                       }</p>
-                      <button className="btn btn-warning btn-xs" onClick={(e)=>{this.onSetProductStatus(e,product.id,product.status)}}>{product.status == 1 ? '下架' : '上架'}</button>
+                      <button className="btn btn-warning btn-xs" onClick={(e)=>{this.onSetProductStatus(e,product.id,product.status)}}>{product.status == 1 ? 'outstack' : 'onsale'}</button>
                     </td>
                     <td>
-                      <Link className="opear" to={'/product/detail/' + product.id}>详情</Link>
-                      <Link className="opear" to={'/product/save/' + product.id}>编辑</Link>
+                      <Link className="opear" to={'/product/detail/' + product.id}>detail</Link>
+                      <Link className="opear" to={'/product/save/' + product.id}>change</Link>
                     </td>
 
                   </tr>

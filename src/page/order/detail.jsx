@@ -85,14 +85,14 @@ class OrderDetail extends React.Component{
         <PageTitle title="订单详情" />
         <div className="form-horizontal">
             <div className="form-group">
-              <label  className="col-sm-2 control-label">订单号</label>
+              <label  className="col-sm-2 control-label">orderNo</label>
               <div className="col-md-5">
                 <p className="form-control-static">{this.state.orderInfo.orderNo}</p>
 
               </div>
             </div>
             <div className="form-group">
-              <label  className="col-sm-2 control-label">创建时间</label>
+              <label  className="col-sm-2 control-label">Time</label>
               <div className="col-md-5">
                 <p className="form-control-static">{this.state.orderInfo.createTime}</p>
 
@@ -100,7 +100,7 @@ class OrderDetail extends React.Component{
             </div>
 
             <div className="form-group">
-              <label  className="col-sm-2 control-label">收件人</label>
+              <label  className="col-sm-2 control-label">Name</label>
               <div className="col-md-5">
                 <p className="form-control-static">
                   {this.state.orderInfo.receiverName}，
@@ -114,7 +114,7 @@ class OrderDetail extends React.Component{
             </div>
 
             <div className="form-group">
-              <label  className="col-sm-2 control-label">订单状态</label>
+              <label  className="col-sm-2 control-label">status</label>
               <div className="col-md-5">
                 <p className="form-control-static">
                   {this.state.orderInfo.statusDesc}
@@ -129,7 +129,7 @@ class OrderDetail extends React.Component{
               </div>
             </div>
             <div className="form-group">
-              <label  className="col-sm-2 control-label">支付方式</label>
+              <label  className="col-sm-2 control-label">payment</label>
               <div className="col-md-5">
                 <p className="form-control-static">{this.state.orderInfo.paymentTypeDesc}</p>
 
@@ -137,14 +137,14 @@ class OrderDetail extends React.Component{
             </div>
 
             <div className="form-group">
-              <label  className="col-sm-2 control-label">金额</label>
+              <label  className="col-sm-2 control-label">Price</label>
               <div className="col-md-5">
-                <p className="form-control-static">{this.state.orderInfo.payment}</p>
+                <p className="form-control-static">${this.state.orderInfo.payment}</p>
 
               </div>
             </div>
             <div className="form-group">
-              <label  className="col-sm-2 control-label">金额</label>
+              <label  className="col-sm-2 control-label">detail</label>
               <div className="col-md-10">
                 <TableList tableHeads={tableHeads}>
                   {
@@ -160,7 +160,7 @@ class OrderDetail extends React.Component{
 
                             </td>
 
-                            <td>{product.currentUnitPrice}</td>
+                            <td>${product.currentUnitPrice}</td>
                             <td>{product.quantity}</td>
                             <td>
                               {product.totalPrice}

@@ -38,7 +38,7 @@ class Home extends React.Component{
               <p className="count">{this.state.userCount}</p>
               <p className="desc">
                 <i className="fa fa-user-o"></i>
-                <span>用户数量</span>
+                <span>user</span>
               </p>
 
             </Link>
@@ -48,7 +48,7 @@ class Home extends React.Component{
               <p className="count">{this.state.productCount}</p>
               <p className="desc">
                 <i className="fa fa-list"></i>
-                <span>商品数量</span>
+                <span>product</span>
               </p>
 
             </Link>
@@ -58,7 +58,7 @@ class Home extends React.Component{
               <p className="count">{this.state.orderCount}</p>
               <p className="desc">
                 <i className="fa fa-check-square-o"></i>
-                <span>订单数量</span>
+                <span>order</span>
               </p>
 
             </Link>

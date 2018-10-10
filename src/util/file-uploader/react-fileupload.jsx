@@ -1,6 +1,7 @@
 /**
  * Created by cheesu on 2015/8/17.
  */
+ // suit for react 16 by Jim on 2017/3/20
 
 /*eslint indent: 0 */
 import React from 'react';

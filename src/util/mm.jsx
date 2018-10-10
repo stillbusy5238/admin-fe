@@ -41,13 +41,14 @@ class MUtil{
     let queryString = window.location.search.split('?')[1] || '';
     let reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
     let result = queryString.match(reg);
+    //result : ['param=123','','123','&']
     return result ? decodeURIComponent(result[2]) : null;
 
 
   }
   //正确提示
   successTip(successMsg){
-    alert(successMsg || '操作成功');
+    alert(successMsg || 'success');
   }
   //错误提示
   errorTips(errMsg){
@@ -68,12 +69,13 @@ class MUtil{
       alert('该类型不能用于本地存储')
     }
   }
+  //取出存储内容
   getStorage(name){
     let data = window.localStorage.getItem(name);
     if(data){
       return JSON.parse(data);
     }else{
-      return ''
+      return '';
     }
   }
    //删除本地存储

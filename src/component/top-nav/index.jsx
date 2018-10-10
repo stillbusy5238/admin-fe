@@ -40,8 +40,8 @@ class TopNav extends React.Component{
                       <i className="fa fa-user fa-fw"></i>
                       {
                         this.state.username ?
-                        <span>欢迎,{this.state.username}</span> :
-                        <span>欢迎您</span>
+                        <span>welcome,{this.state.username}</span> :
+                        <span>welcome</span>
 
                       }
 
@@ -53,7 +53,7 @@ class TopNav extends React.Component{
                   <ul className="dropdown-menu dropdown-user">
                       <li className="dropdown-item">
                           <a onClick={this.onLogout}>
-                              <i className="fa fa-sign-out fa-fw"></i> 退出登录
+                              <i className="fa fa-sign-out fa-fw"></i> logout
                           </a>
                       </li>
                   </ul>

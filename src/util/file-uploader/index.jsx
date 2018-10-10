@@ -26,14 +26,14 @@ class FileUploader extends React.Component{
             accept          : 'image/gif,image/jpeg,image/jpg,image/png',
             dataType        : 'json',
             chooseAndUpload : true,
-            uploadSuccess   : (res)=>{this.props.onSuccess(res.data)},
+            uploadSuccess   : (res)=>{this.props.onSuccess(res.data)}, //只要data字段
             uploadError     : (err)=>{this.props.onError(err.message || '上传图片出错了');}
         }
         /*Use FileUpload with options*/
         /*Set two dom with ref*/
         return (
             <FileUpload options={options}>
-                <button className="btn btn-xs btn-default" ref="chooseAndUpload">上传图片</button>
+                <button className="btn btn-xs btn-default" ref="chooseAndUpload">choose</button>
             </FileUpload>
         )
     }

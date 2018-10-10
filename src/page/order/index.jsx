@@ -24,6 +24,7 @@ class OrderList extends React.Component{
   }
 
   componentDidMount(){
+    
     this.loadOrderList();
   }
   //加载商品列表
@@ -33,6 +34,7 @@ class OrderList extends React.Component{
     listParam.pageNum = this.state.pageNum;
     //如果是搜索
     if(this.state.listType === 'search'){
+
       listParam.orderNo = this.state.orderNumber;
 
 
@@ -72,7 +74,7 @@ class OrderList extends React.Component{
   render(){
     let tableHeads = ['订单号','收件人','订单状态','订单总价','创建时间','操作'];
 
-
+    //
     return(
       <div id="page-wrapper">
         <PageTitle title="订单列表"/>

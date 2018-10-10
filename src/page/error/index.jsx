@@ -15,8 +15,8 @@ class Error extends React.Component{
         <PageTitle title="出错了"/>
         <div className="row">
           <div className="col-md-12">
-            <span>找不到该路径,</span>
-            <Link to="/">点我返回首页</Link>
+            <span>cannot find the path,</span>
+            <Link to="/">back to Home</Link>
           </div>
         </div>
       </div>

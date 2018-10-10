@@ -18,7 +18,7 @@ class ProductSave extends React.Component{
   constructor(props){
     super(props);
     this.state={
-      id:       this.props.match.params.pid,
+      id:       this.props.match.params.pid, //params参数
       name       : '',
       subtitle : '',
       categoryId : 0,
@@ -39,6 +39,7 @@ class ProductSave extends React.Component{
   loadProduct(){
     //有id的时候需要编辑
     if(this.state.id){
+      //有id的时候,表示是编辑功能，需要回填
       _product.getProduct(this.state.id).then((res)=>{
         let images = res.subImages.split(',');
         res.subImages = images.map((imgUri)=>{
@@ -59,6 +60,8 @@ class ProductSave extends React.Component{
   }
   //品类选择器
   onCategoryChange(categoryId,parentCategoryId){
+    // console.log(categoryId);
+    // console.log(parentCategoryId);
     this.setState({
       categoryId : categoryId,
       parentCategoryId : parentCategoryId
@@ -66,15 +69,24 @@ class ProductSave extends React.Component{
 
   }
   //上传图片成功
+  // onuploadSuccess(res){
+  //   let subImages = this.state.subImages;
+  //   subImages.push(res);
+  //   this.setState({
+  //
+  //     subImages: subImages
+  //
+  //   });
+  //
+  // }
   onuploadSuccess(res){
     let subImages = this.state.subImages;
-    subImages.push(res);
+    subImages.push(res)
     this.setState({
+      subImages : subImages //如果直接push this.state.subImages 只会显示长度 ： 1
 
-      subImages: subImages
 
     });
-
   }
 
   //上传图片失败
@@ -83,18 +95,28 @@ class ProductSave extends React.Component{
 
   }
 
+  // onImageDelete(e){
+  //   let index = parseInt(e.target.getAttribute('index')),
+  //       subImages = this.state.subImages;
+  //   subImages.splice(index, 1);
+  //   this.setState({
+  //     subImages : subImages
+  //   });
+  //
+  // }
   onImageDelete(e){
+    // let index = e.target.index,用console.log(index)和log(subImages)
     let index = parseInt(e.target.getAttribute('index')),
         subImages = this.state.subImages;
-    subImages.splice(index, 1);
+
+    subImages.splice(index,1);
     this.setState({
       subImages : subImages
     });
-
   }
   //富文本编辑器的变化
   onRichEditorChange(value){
-    console.log(value);
+
     this.setState({
       detail:value
     });
@@ -124,6 +146,7 @@ class ProductSave extends React.Component{
       stock : parseInt(this.state.stock),
       status : this.state.status
     },
+    //验证表单
     productCheckResult = _product.checkProduct(product);
     if(this.state.id){
       product.id = this.state.id;
@@ -224,10 +247,11 @@ class ProductSave extends React.Component{
                     (image,index) =>(
                       <div className="img-con" key={index}>
                         <img className="img"  src={image.url}/>
+                        {/* index={index} 为了标记删的是第几个元素 */}
                         <i className="fa fa-close" index={index} onClick={(e)=> this.onImageDelete(e)}></i>
                       </div>
                       )
-                  ) : (<div>请上传图片</div>)
+                  ) : (<div>submit images</div>)
                 }
               </div>
               <div className="col-md-offset-2 col-md-10 file-upload-con">

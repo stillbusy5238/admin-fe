@@ -75,7 +75,7 @@ class Product{
   checkProduct(product){
     let result = {
       status : true,
-      msg: '验证通过'
+      msg: 'success'
     };
     if(typeof product.name !== 'string' || product.name.length === 0 ){
       return {
@@ -89,24 +89,26 @@ class Product{
         msg : 'subtitle cannot be empty'
       }
     }
+
     if(typeof product.categoryId !== 'number' || !(product.categoryId > 0)  ){
       return {
         status : false,
-        msg : '请选择商品品类'
+        msg : 'plz select'
       }
     }
     if(typeof product.price !== 'number' || !(product.price >= 0) ){
       return {
         status : false,
-        msg : '输入价格'
+        msg : 'need price'
       }
     }
     if(typeof product.stock !== 'number' || !(product.stock >= 0)  ){
       return {
         status : false,
-        msg : '输入库存'
+        msg : 'need stock'
       }
     }
+
 
     return result;
 
